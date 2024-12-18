@@ -1,22 +1,19 @@
 #!/bin/sh
 
 # Job name
-#SBATCH -p RM
-#SBATCH --job-name="H9" 
-
-#SBATCH --mail-user=valamber@ucsc.edu
-#SBATCH --mail-type=ALL
+#SBATCH --partition=cpuq
+#SBATCH --account=cpuq
+#SBATCH --job-name="H8n01" 
 
 # Output and error files
 #SBATCH -o out # STDOUT
 #SBATCH -e err # STDERR
 
 # Number of processor cores / tasks
-#SBATCH -N 1
-#SBATCH -n 64
+#SBATCH --ntasks=100
 
 # Wall time : maximum allowed run time
-#SBATCH -t 12:00:00   
+#SBATCH --time=4:00:00   
 
 # change the working directory to current directory
 echo Working directory is $SLURM_SUBMIT_DIR
@@ -29,10 +26,8 @@ echo $SLURM_JOB_NAME
 ### Define number of processors
 echo This job has allocated $SLURM_NPROCS cpus
 
-### Make output and back up directories 
-# For my code I have included the capability to save output for backing 
-# up simulations. You can remove this directory for your version
-WDIR=/ocean/projects/ees220013p/vlambert/April2023/m28_n02_ds1em3_new
+### Make output directory
+WDIR=/data/users/valamber/C19_H8_s3_n01
 ODIR=$WDIR/Output
 rm -rf $WDIR
 if [ ! -e $WDIR ]; then
@@ -52,7 +47,7 @@ echo " "
 echo Output directory is $ODIR
 
 # Run the mpi job
-mpirun ./EvolvingYield > LOG <<EOF
+mpirun ./EvolvingYieldBoundary > LOG <<EOF
 #output directory
 $ODIR
 EOF
