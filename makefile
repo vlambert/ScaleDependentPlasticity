@@ -31,6 +31,6 @@ EvolvingYieldBoundary: $(OBJ)
 		$(F90) $(F90FLAGS) -o $@ $^ $(LIBPATH)
 
 clean:
-		rm -f ./EvolvingYield  $(DST)/*.o $(DST)/*genmod.f90 $(DST)/*genmod.mod $(DST)/*.mod
+		rm -f ./EvolvingYieldBoundary  $(DST)/*.o $(DST)/*genmod.f90 $(DST)/*genmod.mod $(DST)/*.mod
 
 
