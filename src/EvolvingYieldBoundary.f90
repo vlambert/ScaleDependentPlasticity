@@ -99,10 +99,10 @@ PROGRAM RoughDiff
   sigY0 = 1.d10  ! Based on scaling from Chris's measurements
   sigY0 = 1.d8
 !  sigY0 = 2.d8
-  nexp = 0.1d0  ! Roughly based on Chris's measurements
+  nexp = 0.2d0  ! Roughly based on Chris's measurements
 
   !Hu = -0.5d0*(mexp + 1.d0) ! Hurst exponent
-  Hu = 0.75d0
+  Hu = 0.8d0
   mexp = -2.d0*Hu - 1.d0
   
   ! Find representative magnification to calculate maximum diffusivity 

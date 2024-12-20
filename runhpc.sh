@@ -27,7 +27,7 @@ echo $SLURM_JOB_NAME
 echo This job has allocated $SLURM_NPROCS cpus
 
 ### Make output directory
-WDIR=/data/users/valamber/C19_H8_s3_n01
+WDIR=/data/users/valamber/C19_H8_s3_n02
 ODIR=$WDIR/Output
 rm -rf $WDIR
 if [ ! -e $WDIR ]; then
