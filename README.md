@@ -23,7 +23,7 @@ $$    c_{j}^{i+1} =-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
 
 $$    d_{j}=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
 
-which can all be evaluated based on information from the current magnification step $\zeta_i$ and knowledge of the diffusivity $F^{i+1} = f(\zeta_{i+1})$, which is precribed in our calculations. The system of equations form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain $[0,Y(\zeta))$.
+which can all be evaluated based on information from the current magnification step $\zeta_i$ and knowledge of the diffusivity $F^{i+1} = f(\zeta_{i+1})$, which is precribed in our calculations. The system of equations form matrix-vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in stress and magnficiation-space (space and time) within the domain $[0,Y(\zeta))$.
 
 The solution for the B.C. at $\sigma=0$ takes the form:
 
