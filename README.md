@@ -9,6 +9,22 @@ $$ \frac{\partial P(\sigma,\zeta)}{\partial \zeta} = f(\zeta) \frac{\partial^2 P
 ## Numerical Solution
 To solve the governing equation subject to the evolving yield stress boundary condition, we implement an implicit Crank-Nicholson finite difference scheme using a modified Thomas Algorithm.
 
+The interior solution of the diffusion problem is solved wiht a standard finite difference scheme, with the solutions to the governing equation being given at stress increments $j$ and magnification step $i+1$ in the form:
+
+$$    a_{j}^{i+1}P_{j-1}^{i+1}+b_{j}^{i+1}P_{j}^{i+1} + c_{j}^{i+1}P_{j+1}^{i+1} = d_{j}^{i} $$
+
+Following an implicit Crank-Nicolson scheme, the coefficients take the form:
+
+$$    a_{j}^{i+1} = -\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    b_{j}^{i+1} = 1+ 2\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    c_{j}^{i+1} =-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    d_{j}=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
+
+which can all be evaluated based on information from the current magnification step $\zeta_i$ and knowledge of the diffusivity $F^{i} = f(\zeta_i)$, which is precribed in our calculations. The system of equations form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain.
+
 ### Discretization scheme
 We construct a 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. We choose magnification increments of the form:
 
@@ -25,18 +41,4 @@ $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
 We numerically compute the solutions to Equation~\ref{eq:govern} subject to the boundary condition Equation~\ref{eq:gov1} which is evolved by Equation~\ref{eq:gov2} for a suite of stress exponents $n$ and Hurst exponents $H$ to examine the trade-offs between elastic and plastic deformation as a function of scale (Figures~\ref{fig:area} and \ref{fig:force}). The equations are solved numerically using an implicit Crank-Nicholson finite difference scheme that is 2nd-order accurate in stress- and magnification-space.
 
 
-Considering a finite difference scheme for the interior solution to the diffusion problem, the equations for the solution at a given cell $j$ and magnification step $i+1$ will take the form:
 
-$$    a_{j}^{i+1}P_{j-1}^{i+1}+b_{j}^{i+1}P_{j}^{i+1} + c_{j}^{i+1}P_{j+1}^{i+1} = d_{j}^{i} $$
-
-Following an implicit Crank-Nicolson scheme, the coefficients take the form:
-
-$$    a_{j}^{i+1} = -\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-
-$$    b_{j}^{i+1} = 1+ 2\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-
-$$    c_{j}^{i+1} =-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-
-$$    d_{j}=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
-
-which can all be evaluated based on information from the current magnification step $\zeta_i$ and knowledge of the diffusivity $F^{i} = f(\zeta_i)$ and yield stress evolution $Sp^i = Y'(\zeta_i)$, which are precribed in our calculations. The system of equations form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain.
