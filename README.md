@@ -25,6 +25,16 @@ $$    d_{j}=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} 
 
 which can all be evaluated based on information from the current magnification step $\zeta_i$ and knowledge of the diffusivity $F^{i} = f(\zeta_i)$, which is precribed in our calculations. The system of equations form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain $[0,Y(\zeta))$.
 
+The solution for the B.C. at $\sigma=0$ takes the form:
+\begin{equation}
+    b_{1}P_{0}^{i+1} + c_{1}P_{1}^{i+1} = d_{1}^{i}
+\end{equation}
+where $b_{1} = 1$ and $c_{1}=d_{1} = 0$ to ensure $P_{0} = 0$. Similarly for a constant yield stress ($Y'(\zeta) =0$), $P_{ny} = 0$ where $ny$ indicates the node at the maximum end of the discretized stress axis. Generally, the $\sigma = Y(\zeta)$ boundary condition takes the form:
+\begin{equation}
+    a_{ny}P_{ny-1}^{i+1} + b_{ny}P_{ny}^{i+1} = d_{ny}^{i}
+\end{equation}
+with $b_{ny} = 1$ and $a_{ny}=d_{ny} = 0$ for the specific case of a constant yield stress .
+
 ### Discretization scheme
 We construct a 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. We choose magnification increments of the form:
 
