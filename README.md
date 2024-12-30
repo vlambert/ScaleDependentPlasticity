@@ -78,14 +78,13 @@ We adapt the 2nd-order finite difference method for the nodes near the yield bou
 + F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg]
 ```
 
-
 Following an implicit Crank-Nicolson scheme, the new coefficients for the second-to-last node take the form:
-\begin{align}
-    a_{ny-1}^{i+1} &= -\Delta\zeta\frac{F^{i+1}}{\Delta\sigma (2\Delta\sigma+\delta^{i+1})}\\
-    b_{ny-1}^{i+1} &= 1+ \Delta\zeta F^{i+1}\frac{1}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\\
-    c_{ny-1}^{i+1} &=-\Delta\zeta\frac{F^{i+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma+\delta^{i+1})}\\
-    d_{ny-1}^{i}&=\Delta\zeta F^{i} \bigg( \frac{P_{ny-2}^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})} + \frac{P_{ny}^{i}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma+\delta^{i})}\bigg) + \bigg(1-\Delta\zeta F^{i} \frac{1}{\Delta\sigma(\Delta\sigma + \delta^{i})}\bigg) P_{ny-1}^{i}
-\end{align}
+
+$$    a_{ny-1}^{i+1} = -\Delta\zeta\frac{F^{i+1}}{\Delta\sigma (2\Delta\sigma+\delta^{i+1})} $$
+$$    b_{ny-1}^{i+1} = 1+ \Delta\zeta F^{i+1}\frac{1}{\Delta\sigma(\Delta\sigma+\delta^{i+1})} $$
+$$    c_{ny-1}^{i+1} =-\Delta\zeta\frac{F^{i+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma+\delta^{i+1})} $$
+$$    d_{ny-1}^{i}=\Delta\zeta F^{i} \bigg( \frac{P_{ny-2}^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})} + \frac{P_{ny}^{i}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma+\delta^{i})}\bigg) + \bigg(1-\Delta\zeta F^{i} \frac{1}{\Delta\sigma(\Delta\sigma + \delta^{i})}\bigg) P_{ny-1}^{i} $$
+
 Now we consider the condition for the node at the yield boundary:
 
 \begin{align}
