@@ -10,17 +10,31 @@ $$ \frac{\partial P(\sigma,\zeta)}{\partial \zeta} = f(\zeta) \frac{\partial^2 P
 To solve the governing equation subject to the evolving yield stress boundary condition, we implement an implicit Crank-Nicholson finite difference scheme using a modified Thomas Algorithm.
 
 ### Discretization scheme
-We construct a 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. To ensure adequate discretization in magnification space we choose magnification increments of the form:
+We construct a 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. We choose magnification increments of the form:
 
 $$    \Delta\zeta = \alpha \frac{\Delta \sigma^2}{f(\zeta)}  $$
 
-to satisfy the Courant conditon. Higher diffusivities $f(\zeta)$ require smaller magnification increments for adequate integration and the effective diffusivity can vary by several orders of magnitude with $\zeta$. 
+to satisfy the Courant conditon. Higher diffusivities $f(\zeta)$ require smaller magnification increments for adequate integration. The effective diffusivity can vary by several orders of magnitude with varying magnficiation $\zeta$. 
 
-Note that since the effective diffusivity $$f(\zeta)$$ is magnification-dependent the choice of magnification step also varies with magnification. Assuming that the power spectral density follows a power law of form $C(\zeta)^{1D} = C_{0} \zeta^{m}$ where $m = -2H-1$ for self affine roughness, one can show that:
+Assuming that the power spectral density follows a power law of form $C(\zeta)^{1D} = C_{0} \zeta^{m}$ where $m = -2H-1$ for self affine roughness, one can show that:
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 Thus $f'(\zeta) \le 0$ if $m\le-2$ or $H\ge 0.5$. This feature is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. Thus at a given time station $i$, we can compute a reasonable magnification step $\Delta\zeta_{i}$ to the next time station $i+1$ using the diffusivity evaluated at the time station i $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
 
-
 We numerically compute the solutions to Equation~\ref{eq:govern} subject to the boundary condition Equation~\ref{eq:gov1} which is evolved by Equation~\ref{eq:gov2} for a suite of stress exponents $n$ and Hurst exponents $H$ to examine the trade-offs between elastic and plastic deformation as a function of scale (Figures~\ref{fig:area} and \ref{fig:force}). The equations are solved numerically using an implicit Crank-Nicholson finite difference scheme that is 2nd-order accurate in stress- and magnification-space.
+
+
+Considering a finite difference scheme for the interior solution to the diffusion problem, the equations for the solution at a given cell $j$ and magnification step $i+1$ will take the form:
+
+$$    a_{j}^{i+1}P_{j-1}^{i+1}+b_{j}^{i+1}P_{j}^{i+1} + c_{j}^{i+1}P_{j+1}^{i+1} = d_{j}^{i} $$
+
+Following an implicit Crank-Nicolson scheme, the coefficients take the form:
+
+$$    a_{j}^{i+1} &= -\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+$$    b_{j}^{i+1} &= 1+ 2\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+$$    c_{j}^{i+1} &=-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+$$    d_{j}&=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
+
+which can all be evaluated based on information from the current magnification station $i$ and knowledge of the diffusivity $f(\zeta)$ and yield stress evolution $Y'(\zeta)$, which are precribed in our calculations.
+The system of equations will form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain.
