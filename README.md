@@ -46,7 +46,7 @@ For a self-affine surface where the roughness power spectral density is a power-
 
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 
-Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.5$. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
+Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
 
