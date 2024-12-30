@@ -103,7 +103,7 @@ $$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac
 
 The new coefficients for our final equation become:
 
-$$ \tilde{a}_{ny}^{i+1} = - \frac{\Delta\zeta}{2}Sp^{i+1}\frac{1}{(\Delta\sigma+\delta^{i+1})} + \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) $$
+$$ \tilde{a}_{ny} = - \frac{\Delta\zeta}{2}Sp^{i+1}\frac{1}{(\Delta\sigma+\delta^{i+1})} + \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) $$
 
 $$ \tilde{a}_{ny} = a_{ny} - \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
 
