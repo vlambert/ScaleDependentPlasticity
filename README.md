@@ -61,7 +61,7 @@ $$ A_{pl}^{i} = \frac{F^{i}}{Sp^{i}} P_{ny}^{i}. $$
 
 Similarly, the boundary condition at the new magnification step $P_{ny}^{i+1}$ should be consistent with the new plastic area of contact $A_{pl}^{i+1}$:
 
-$$    P_{ny}^{i+1} &= \frac{Sp^{i+1}}{F^{i+1}} A_{pl}^{i+1}, $$
+$$    P_{ny}^{i+1} = \frac{Sp^{i+1}}{F^{i+1}} A_{pl}^{i+1}, $$
 
 which we approximate as:
 
@@ -72,10 +72,10 @@ We compute the increment $\Delta A_{pl} = \Delta\zeta \partial A_{pl}/\partial \
 $$    \Delta A_{pl} = \frac{\Delta\zeta}{2}\bigg(  -Sp^{i+1}P_{ny}^{i+1} - \frac{F^{i+1}}{\Delta \sigma}\bigg[ P_{ny}^{i+1}-P_{ny-1}^{i+1}\bigg] -Sp^{i}P_{ny}^{i} - \frac{F^{i}}{\Delta \sigma}\bigg[ P_{ny}^{i}-P_{ny-1}^{i}\bigg]\bigg). $$
 
 Consider the uniform spacing $\Delta\sigma = \sigma_{i}-\sigma_{i-1}$. At the yield boundary the spacing may differ from the uniform grid by a small amount $\delta$ as $\Delta\sigma_{ny} = \Delta\sigma + \delta$ depending on the magnification step. We adapt the 2nd-order finite difference method for the nodes near the yield boundary with uneven spacing by interpolating the distribution $P(\sigma,\zeta)$ with a 2nd-order Lagrange polynomial between points $P_{ny-2}$ and $P_{ny}$. The equation for our discretized diffusion equation at the second-to-last node can then be determined as:
-\begin{align}
-    \frac{P_{j}^{i+1}-P_{j}^{i}}{\Delta\zeta} &= \bigg[F^{i}\bigg(\frac{P^{i}_{j+1}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma + \delta^{i})} + \frac{P^{i}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i})}-\frac{P^{i}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i})}\bigg)\nonumber\\
-    &+ F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg]
-\end{align}
+
+$$    \frac{P_{j}^{i+1}-P_{j}^{i}}{\Delta\zeta} &= \bigg[F^{i}\bigg(\frac{P^{i}_{j+1}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma + \delta^{i})} + \frac{P^{i}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i})}-\frac{P^{i}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i})}\bigg 
++ F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg] $$
+
 
 Following an implicit Crank-Nicolson scheme, the new coefficients for the second-to-last node take the form:
 \begin{align}
