@@ -29,7 +29,7 @@ The solution for the B.C. at $\sigma=0$ takes the form:
 
 $$    b_{1}P_{0}^{i+1} + c_{1}P_{1}^{i+1} = d_{1}^{i}, $$
 
-where $b_{1} = 1$ and $c_{1}=d_{1} = 0$ to ensure $P_{0} = 0$. Similarly for a constant yield stress ($Y'(\zeta) =0$), $P_{ny} = 0$ where $ny$ indicates the node at the maximum end of the discretized stress axis. The $\sigma = Y(\zeta)$ boundary condition takes the form:
+where $b_{1} = 1$ and $c_{1}=d_{1} = 0$ to ensure $P_{0} = 0$. Similarly for a constant yield stress ($Y'(\zeta) =0$) $P_{ny} = 0$ where $ny$ indicates the node at the maximum end of the discretized stress axis (i.e. $P(Y(\zeta),\zeta)$. The $\sigma = Y(\zeta)$ boundary condition takes the form:
 
 $$    a_{ny}P_{ny-1}^{i+1} + b_{ny}P_{ny}^{i+1} = d_{ny}^{i} $$
 
