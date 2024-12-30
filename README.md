@@ -27,7 +27,9 @@ Change in non-contact area:
 $$ A'_\text{non}/A_0 =  f(\zeta)\frac{\partial P(\sigma,\zeta)}{\partial \sigma}\bigg|_{\sigma = 0}
 
 Boundary conditions for scale-dependent yield stress:
+
 $$\frac{A_\text{pl}(\zeta)}{A_{0}} = \frac{f(\zeta)}{Y'(\zeta)} P(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)} $$
+
 $$ \frac{A'_\text{pl}(\zeta)}{A_{0}} = - Y'(\zeta)P(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)} - f(\zeta)\frac{\partial P}{\partial \sigma}(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)} $$
 
 ## Numerical Solution
