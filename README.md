@@ -99,7 +99,7 @@ Note that this 2nd-order formulation of the boundary equation compromises the tr
 $$ a_{ny-1}P_{ny-2}+ b_{ny-1}P_{ny-1}+ c_{ny-1}P_{ny} = d_{ny-1} $$
 $$    z_{ny}P_{ny-2}+ a_{ny}P_{ny-1}+ b_{ny}P_{ny} = d_{ny} $$
 
-$$ (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1} $$
+$$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1} $$
 
 Thus the new coefficients for our final equation become:
 
