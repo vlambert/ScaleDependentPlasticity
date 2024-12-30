@@ -97,19 +97,16 @@ Note that this 2nd-order formulation of the boundary equation compromises the tr
 $$ a_{ny-1}P_{ny-2}+ b_{ny-1}P_{ny-1}+ c_{ny-1}P_{ny} = d_{ny-1} $$
 $$    z_{ny}P_{ny-2}+ a_{ny}P_{ny-1}+ b_{ny}P_{ny} = d_{ny} $$
 
-\begin{align}
-(a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1}
-\end{align}
-Thus the new coefficients for our final equation become:
-\begin{align}
-    \tilde{a}_{ny} &= a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1}\\
-    \tilde{b}_{ny} &=b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}\\
-    \tilde{d}_{ny} &= d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1}
-\end{align}
+$$ (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1} $$
 
-\begin{align}
-    -\frac{z_{ny}}{a_{ny-1}} = \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1})
-\end{align}
+Thus the new coefficients for our final equation become:
+
+$$    \tilde{a}_{ny} &= a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1} $$
+$$    \tilde{b}_{ny} &=b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1} $$
+$$    \tilde{d}_{ny} &= d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1} $$
+
+$$     -\frac{z_{ny}}{a_{ny-1}} = \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) $$
+
 \begin{align}
     b_{ny-1}^{i+1} &= 1+ \Delta\zeta F^{i+1}\frac{1}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\\
     c_{ny-1}^{i+1} &=-\Delta\zeta\frac{F^{i+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma+\delta^{i+1})}\\
