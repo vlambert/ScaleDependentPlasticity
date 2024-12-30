@@ -7,9 +7,9 @@ The problem statement considers a rough surface with linear scale $$L$$ that can
 $$ \frac{\partial P(\sigma,\zeta)}{\partial \zeta} = f(\zeta) \frac{\partial^2 P(\sigma,\zeta)}{\partial \sigma^2} $$ 
 
 ## Numerical Solution
-To solve the governing equation subject to the evolving yield stress boundary condition, we implement an implicit Crank-Nicholson finite difference scheme using a modified Thomas Algorithm.
+We solve the governing equation subject to the evolving yield stress boundary condition using implicit Crank-Nicholson finite difference scheme. The numerical solution is implement using a modified Thomas Algorithm which provides a parallilzed framework for efficiently solving the system of equations characterizerd by a tri-diagonalize matrix.
 
-The interior solution of the diffusion problem is solved wiht a standard finite difference scheme, with the solutions to the governing equation being given at stress increments $j$ and magnification step $i+1$ in the form:
+The interior solution of the diffusion problem is solved with a standard finite difference scheme, with the solutions to the governing equation given at stress increments $j$ and magnification step $i+1$ in the form:
 
 $$    a_{j}^{i+1}P_{j-1}^{i+1}+b_{j}^{i+1}P_{j}^{i+1} + c_{j}^{i+1}P_{j+1}^{i+1} = d_{j}^{i} $$
 
