@@ -101,11 +101,11 @@ $$    z_{ny}P_{ny-2}+ a_{ny}P_{ny-1}+ b_{ny}P_{ny} = d_{ny} $$
 
 $$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1} $$
 
-Thus the new coefficients for our final equation become:
+The new coefficients for our final equation become:
 
-$$    \tilde{a}_{ny} = a_{ny} - \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
-$$    \tilde{b}_{ny} =b_{ny} -\frac{z_{ny}}{a_{ny-1}} c_{ny-1} $$
-$$    \tilde{d}_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}} d_{ny-1} $$
+```math   \tilde{a}_{ny} = a_{ny} - \frac{z_{ny}}{a_{ny-1}} b_{ny-1} ```
+```math    \tilde{b}_{ny} = b_{ny} -\frac{z_{ny}}{a_{ny-1}} c_{ny-1}  ```
+```math    \tilde{d}_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}} d_{ny-1} ```
 
 $$     -\frac{z_{ny}}{a_{ny-1}} = \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) $$
 
