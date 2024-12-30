@@ -42,13 +42,86 @@ $$    \Delta\zeta = \alpha \frac{\Delta \sigma^2}{f(\zeta)}  $$
 
 to satisfy the Courant conditon. Higher diffusivities $f(\zeta)$ require smaller magnification increments for adequate integration. The effective diffusivity can vary by several orders of magnitude with varying magnficiation $\zeta$. 
 
-Assuming that the power spectral density follows a power law of form $C(\zeta)^{1D} = C_{0} \zeta^{m}$ where $m = -2H-1$ for self affine roughness, one can show that:
+For a roughness power spectral density characterized by a power law of form $C(\zeta)^{1D} = C_{0} \zeta^{m}$ where $m = -2H-1$ for self affine roughness, one can show that:
+
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
+
 Thus $f'(\zeta) \le 0$ if $m\le-2$ or $H\ge 0.5$. This feature is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. Thus at a given time station $i$, we can compute a reasonable magnification step $\Delta\zeta_{i}$ to the next time station $i+1$ using the diffusivity evaluated at the time station i $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
 
 We numerically compute the solutions to Equation~\ref{eq:govern} subject to the boundary condition Equation~\ref{eq:gov1} which is evolved by Equation~\ref{eq:gov2} for a suite of stress exponents $n$ and Hurst exponents $H$ to examine the trade-offs between elastic and plastic deformation as a function of scale (Figures~\ref{fig:area} and \ref{fig:force}). The equations are solved numerically using an implicit Crank-Nicholson finite difference scheme that is 2nd-order accurate in stress- and magnification-space.
 
+## Treatment of evolving yield stress boundary
+For a scale-dependent yield stress where the yield stress $Y(\zeta)$ is a function of magnification, we need to both adapt the model domain $\sigma \in [0,Y(\zeta)]$ as a function of magnification and solve for the appropriate boundary conditions $P(Y(\zeta),\zeta)$. Conservation of force across scales requires that $Y'(\zeta) \ge 0$ so we only consider problems where the stress domain increases with increasing magnficiation $\zeta$. 
+
+Let $F^{i}$ and $Sp^{i}$ denote the diffusivity $f(\zeta_i)$ and derivative of the yield stress $Y'(\zeta)$ at the magnification step $\zeta_{i}$. Given the solution to $P_{ny}$ at magnification step $i$, i.e. $P_{ny}^{i}$, one can solve for the corresponding plastic area of contact:
+
+$$ A_{pl}^{i} = \frac{F^{i}}{Sp^{i}} P_{ny}^{i}. $$
+
+Similarly, the boundary condition at the new magnification step $P_{ny}^{i+1}$ should be consistent with the new plastic area of contact $A_{pl}^{i+1}$:
+
+$$    P_{ny}^{i+1} &= \frac{Sp^{i+1}}{F^{i+1}} A_{pl}^{i+1}, $$
+
+which we approximate as:
+
+$$    P_{ny}^{i+1}= \frac{Sp^{i+1}}{F^{i+1}} \left[ A_{pl}^{i} + \Delta \zeta \frac{\partial A_{pl}}{\partial \zeta}\right]. $$
+
+We compute the increment $\Delta A_{pl} = \Delta\zeta \partial A_{pl}/\partial \zeta$ using the trapezoidal rule:
+
+$$    \Delta A_{pl} = \frac{\Delta\zeta}{2}\bigg(  -Sp^{i+1}P_{ny}^{i+1} - \frac{F^{i+1}}{\Delta \sigma}\bigg[ P_{ny}^{i+1}-P_{ny-1}^{i+1}\bigg] -Sp^{i}P_{ny}^{i} - \frac{F^{i}}{\Delta \sigma}\bigg[ P_{ny}^{i}-P_{ny-1}^{i}\bigg]\bigg). $$
+
+Consider the uniform spacing $\Delta\sigma = \sigma_{i}-\sigma_{i-1}$. At the yield boundary the spacing may differ from the uniform grid by a small amount $\delta$ as $\Delta\sigma_{ny} = \Delta\sigma + \delta$ depending on the magnification step. We adapt the 2nd-order finite difference method for the nodes near the yield boundary with uneven spacing by interpolating the distribution $P(\sigma,\zeta)$ with a 2nd-order Lagrange polynomial between points $P_{ny-2}$ and $P_{ny}$. The equation for our discretized diffusion equation at the second-to-last node can then be determined as:
+\begin{align}
+    \frac{P_{j}^{i+1}-P_{j}^{i}}{\Delta\zeta} &= \bigg[F^{i}\bigg(\frac{P^{i}_{j+1}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma + \delta^{i})} + \frac{P^{i}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i})}-\frac{P^{i}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i})}\bigg)\nonumber\\
+    &+ F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg]
+\end{align}
+
+Following an implicit Crank-Nicolson scheme, the new coefficients for the second-to-last node take the form:
+\begin{align}
+    a_{ny-1}^{i+1} &= -\Delta\zeta\frac{F^{i+1}}{\Delta\sigma (2\Delta\sigma+\delta^{i+1})}\\
+    b_{ny-1}^{i+1} &= 1+ \Delta\zeta F^{i+1}\frac{1}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\\
+    c_{ny-1}^{i+1} &=-\Delta\zeta\frac{F^{i+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma+\delta^{i+1})}\\
+    d_{ny-1}^{i}&=\Delta\zeta F^{i} \bigg( \frac{P_{ny-2}^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})} + \frac{P_{ny}^{i}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma+\delta^{i})}\bigg) + \bigg(1-\Delta\zeta F^{i} \frac{1}{\Delta\sigma(\Delta\sigma + \delta^{i})}\bigg) P_{ny-1}^{i}
+\end{align}
+Now we consider the condition for the node at the yield boundary:
+
+\begin{align}
+    \Delta A_{pl} = \frac{\Delta\zeta}{2}\bigg(  -&Sp^{i+1}P_{ny}^{i+1} - F^{i+1}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i+1}}{(\Delta\sigma + \delta^{i+1})(2\Delta\sigma+\delta^{i+1})}P_{ny}^{i+1}-\frac{2\Delta\sigma + \delta^{i+1}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}P_{ny-1}^{i+1} + \frac{\Delta\sigma + \delta^{i+1}}{\Delta\sigma(2\Delta\sigma + \delta^{i+1})}P_{ny-2}^{i+1}\bigg] - \nonumber\\
+    &Sp^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i}}{(\Delta\sigma + \delta^{i})(2\Delta\sigma+\delta^{i})}P_{ny}^{i}-\frac{2\Delta\sigma + \delta^{i}}{\Delta\sigma(\Delta\sigma+\delta^{i})}P_{ny-1}^{i} + \frac{\Delta\sigma + \delta^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})}P_{ny-2}^{i}\bigg]\bigg)
+\end{align}
+
+
+Note that this 2nd-order formulation of the boundary equation compromises the tridiagonal nature of the finite difference operator. We can define a new tridiagonal matrix to solve by scaling and adding the second-to-last equation to the yield boundary equation:
+\begin{align}
+    &a_{ny-1}P_{ny-2}+ b_{ny-1}P_{ny-1}+ c_{ny-1}P_{ny} = d_{ny-1}\\
+    &z_{ny}P_{ny-2}+ a_{ny}P_{ny-1}+ b_{ny}P_{ny} = d_{ny}
+\end{align}
+\begin{align}
+(a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}) P_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1}
+\end{align}
+Thus the new coefficients for our final equation become:
+\begin{align}
+    \tilde{a}_{ny} &= a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1}\\
+    \tilde{b}_{ny} &=b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}\\
+    \tilde{d}_{ny} &= d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1}
+\end{align}
+
+\begin{align}
+    -\frac{z_{ny}}{a_{ny-1}} = \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1})
+\end{align}
+\begin{align}
+    b_{ny-1}^{i+1} &= 1+ \Delta\zeta F^{i+1}\frac{1}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\\
+    c_{ny-1}^{i+1} &=-\Delta\zeta\frac{F^{i+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma+\delta^{i+1})}\\
+    d_{ny-1}^{i}&=\Delta\zeta F^{i} \bigg( \frac{P_{ny-2}^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})} + \frac{P_{ny}^{i}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma+\delta^{i})}\bigg) + \bigg(1-\Delta\zeta F^{i} \frac{1}{\Delta\sigma(\Delta\sigma + \delta^{i})}\bigg) P_{ny-1}^{i}
+\end{align}
+
+
+\begin{align}
+\tilde{a}_{ny}^{i+1} &=- \frac{\Delta\zeta}{2}Sp^{i+1}\frac{1}{(\Delta\sigma+\delta^{i+1})} + \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) \\
+\tilde{b}_{ny}^{i+1} &=  1+ \frac{\Delta\zeta}{2}\frac{Sp^{i+1}}{F^{i+1}}\bigg[ Sp^{i+1}+F^{i+1}\frac{1}{(\Delta\sigma + \delta^{i+1})}\bigg]\\
+     \tilde{d}_{ny}^{i} &= \frac{Sp^{i+1}}{F^{i+1}} \bigg[ A_{pl}^{i} +   \frac{\Delta\zeta}{2}\bigg(Sp^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{1}{\Delta\sigma + \delta^{i}}P_{ny}^{i}-\frac{1}{\Delta\sigma} P_{ny-1}^{i} \bigg]\bigg)\nonumber\\
+   &  + \frac{1}{2}(\Delta\sigma  + \delta^{i+1}) P_{ny-1}^{i}\bigg]
+\end{align}
 
 
