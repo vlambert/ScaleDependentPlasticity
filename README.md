@@ -91,7 +91,7 @@ Now we consider the condition for the node at the yield boundary:
     \Delta A_{pl} = \frac{\Delta\zeta}{2}\bigg(  -Sp^{i+1}P_{ny}^{i+1} - F^{i+1}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i+1}}{(\Delta\sigma + \delta^{i+1})(2\Delta\sigma+\delta^{i+1})}P_{ny}^{i+1}-\frac{2\Delta\sigma + \delta^{i+1}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}P_{ny-1}^{i+1} + \frac{\Delta\sigma + \delta^{i+1}}{\Delta\sigma(2\Delta\sigma + \delta^{i+1})}P_{ny-2}^{i+1}\bigg] 
 ```
 ```math
-   - p^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i}}{(\Delta\sigma + \delta^{i})(2\Delta\sigma+\delta^{i})}P_{ny}^{i}-\frac{2\Delta\sigma + \delta^{i}}{\Delta\sigma(\Delta\sigma+\delta^{i})}P_{ny-1}^{i} + \frac{\Delta\sigma + \delta^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})}P_{ny-2}^{i}\bigg]\bigg) 
+   - Sp^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i}}{(\Delta\sigma + \delta^{i})(2\Delta\sigma+\delta^{i})}P_{ny}^{i}-\frac{2\Delta\sigma + \delta^{i}}{\Delta\sigma(\Delta\sigma+\delta^{i})}P_{ny-1}^{i} + \frac{\Delta\sigma + \delta^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})}P_{ny-2}^{i}\bigg]\bigg) 
 ```
 
 Note that this 2nd-order formulation of the boundary equation compromises the tridiagonal nature of the finite difference operator. We can define a new tridiagonal matrix to solve by scaling and adding the second-to-last equation to the yield boundary equation:
