@@ -36,21 +36,19 @@ $$    a_{ny}P_{ny-1}^{i+1} + b_{ny}P_{ny}^{i+1} = d_{ny}^{i} $$
 with $b_{ny} = 1$ and $a_{ny}=d_{ny} = 0$ for the specific case of a constant yield stress.
 
 ### Discretization scheme
-We construct a 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. We choose magnification increments of the form:
+We construct an initial 1-D grid in stress space spanning the domain $$[0,Y(1)]$$ discretized by N grid points with uniform spacing $\Delta\sigma = Y(1)/(N-1)$. Magnification increments of the form:
 
 $$    \Delta\zeta = \alpha \frac{\Delta \sigma^2}{f(\zeta)}  $$
 
-to satisfy the Courant conditon. Higher diffusivities $f(\zeta)$ require smaller magnification increments for adequate integration. The effective diffusivity can vary by several orders of magnitude with varying magnficiation $\zeta$. 
+are chosen to satisfy the Courant conditon. Higher diffusivities $f(\zeta)$ require smaller magnification increments for adequate integration. The effective diffusivity can vary by several orders of magnitude with varying magnficiation $\zeta$. 
 
-For a roughness power spectral density characterized by a power law of form $C(\zeta)^{1D} = C_{0} \zeta^{m}$ where $m = -2H-1$ for self affine roughness, one can show that:
+For a self-affine surface where the roughness power spectral density is a power-law function of scale $C(\zeta) = C_{0} \zeta^{m}$ where $C_0$ is a pre-factor and $m = -2H-1$, the change in the effective diffusivity with increasing magnification is given by:
 
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 
-Thus $f'(\zeta) \le 0$ if $m\le-2$ or $H\ge 0.5$. This feature is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. Thus at a given time station $i$, we can compute a reasonable magnification step $\Delta\zeta_{i}$ to the next time station $i+1$ using the diffusivity evaluated at the time station i $F_{i} = f(\zeta_{i})$:
+Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.5$. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
-
-We numerically compute the solutions to Equation~\ref{eq:govern} subject to the boundary condition Equation~\ref{eq:gov1} which is evolved by Equation~\ref{eq:gov2} for a suite of stress exponents $n$ and Hurst exponents $H$ to examine the trade-offs between elastic and plastic deformation as a function of scale (Figures~\ref{fig:area} and \ref{fig:force}). The equations are solved numerically using an implicit Crank-Nicholson finite difference scheme that is 2nd-order accurate in stress- and magnification-space.
 
 ## Treatment of evolving yield stress boundary
 For a scale-dependent yield stress where the yield stress $Y(\zeta)$ is a function of magnification, we need to both adapt the model domain $\sigma \in [0,Y(\zeta)]$ as a function of magnification and solve for the appropriate boundary conditions $P(Y(\zeta),\zeta)$. Conservation of force across scales requires that $Y'(\zeta) \ge 0$ so we only consider problems where the stress domain increases with increasing magnficiation $\zeta$. 
