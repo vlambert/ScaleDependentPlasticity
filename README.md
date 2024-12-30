@@ -10,21 +10,6 @@ Effective diffusivity:
 
 $$f(\zeta) = \frac{\pi}{4}\left(\frac{E}{1-\nu^2}\right)^2 q_L^4 \zeta^3 C(\zeta)$$
 
-Area of elastic contact:
-
-$$    A_\text{el}(\zeta) = A_0 \int_0^{Y(\zeta)}  P(\sigma,\zeta)d\sigma $$
-
-The normal force carried by elastically deformed contact area is:
-
-$$    F_\text{el}(\zeta) = A_0 \int_0^{Y(\zeta)} \sigma P(\sigma,\zeta)d\sigma. $$
-
-Change in plastic area of contact:
-
-$$  A'_\text{pl}(\zeta)/A_0 = -Y'(\zeta)P(Y(\zeta),\zeta) -  f(\zeta)\frac{\partial P}{\partial \sigma}(Y(\zeta),\zeta). $$
-
-Change in non-contact area:
-
-$$ A'_\text{non}/A_0 =  f(\zeta)\frac{\partial P(\sigma,\zeta)}{\partial \sigma}\bigg|_{\sigma = 0}
 
 Boundary conditions for scale-dependent yield stress:
 
