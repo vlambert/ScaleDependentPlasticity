@@ -73,8 +73,10 @@ The above considers the uniform grid spacing $\Delta\sigma = \sigma_{j}-\sigma_{
 
 We adapt the 2nd-order finite difference method for the nodes near the yield boundary with uneven spacing by interpolating the distribution $P(\sigma,\zeta)$ with a 2nd-order Lagrange polynomial between points $P_{ny-2}$ and $P_{ny}$. The equation for our discretized diffusion equation at the second-to-last node can then be determined as:
 
-$$    \frac{P_{j}^{i+1}-P_{j}^{i}}{\Delta\zeta} = \bigg[F^{i}\bigg(\frac{P^{i}_{j+1}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma + \delta^{i})} + \frac{P^{i}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i})}-\frac{P^{i}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i})}\bigg 
-+ F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg] $$
+$$
+\frac{P_{j}^{i+1}-P_{j}^{i}}{\Delta\zeta} = \bigg[F^{i}\bigg(\frac{P^{i}_{j+1}}{(\Delta\sigma+\delta^{i})(2\Delta\sigma + \delta^{i})} + \frac{P^{i}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i})}-\frac{P^{i}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i})}\bigg) \\
++ F^{i+1}\bigg(\frac{P^{i+1}_{j+1}}{(\Delta\sigma+\delta^{i+1})(2\Delta\sigma + \delta^{i+1})} + \frac{P^{i+1}_{j-1}}{\Delta\sigma(2\Delta\sigma+\delta^{i+1})}-\frac{P^{i+1}_{j}}{\Delta\sigma(\Delta\sigma+\delta^{i+1})}\bigg)\bigg]
+$$
 
 
 Following an implicit Crank-Nicolson scheme, the new coefficients for the second-to-last node take the form:
