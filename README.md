@@ -103,7 +103,7 @@ $$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac
 
 The new coefficients for our final equation become:
 
-$$ \tilde{a}_{ny} = a_{ny}$ $$
+$$ a_{ny} = a_ny} $$
 
 $$ \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1}, $$
 
