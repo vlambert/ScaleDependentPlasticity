@@ -103,11 +103,13 @@ $$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac
 
 The new coefficients for our final equation become:
 
-$$    \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1}$$
+$$    \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
 
-$$    \tilde{b}_{ny} = b_{ny}-\frac{z_{ny}}{a_{ny-1}}c_{ny-1}$$
+$$    \tilde{b}_{ny} = b_{ny}-\frac{z_{ny}}{a_{ny-1}} c_{ny-1} $$
 
-$$    \tilde{d}_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}}d_{ny-1}$$
+$$    \tilde{d}_{ny} = d_{ny} - \frac{z_{ny}}{a_{ny-1}} d_{ny-1} $$
+
+where:
 
 $$     -\frac{z_{ny}}{a_{ny-1}} = \frac{Sp^{i+1}}{2F^{i+1}} (\Delta\sigma  + \delta^{i+1})$$
 
