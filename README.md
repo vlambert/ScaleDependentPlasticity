@@ -105,7 +105,7 @@ The new coefficients for our final equation become:
 
 $$ \tilde{a}_{ny} = a_{ny} - \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
 
-$$ \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1}, $$
+$$ \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1}2, $$
 
 $$    \tilde{b}_{ny} = b_{ny}-\frac{z_{ny}}{a_{ny-1}} c_{ny-1}, $$
 
