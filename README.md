@@ -64,7 +64,7 @@ $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 
 Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
 
-$$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
+$$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F_{i}} $$
 
 ## Treatment of evolving yield stress boundary
 For a scale-dependent yield stress where the yield stress $Y(\zeta)$ is a function of magnification, we need to both adapt the model domain $\sigma \in [0,Y(\zeta)]$ as a function of magnification and solve for the appropriate boundary conditions $P(Y(\zeta),\zeta)$. Conservation of force across scales requires that $Y'(\zeta) \ge 0$ so we only consider problems where the stress domain increases with increasing magnficiation $\zeta$. In our numerical implementation we preallocate a model stress domain based on thte plastic yield strength at the largest magnification of interest $Y(\zeta_{max})$. Calculations for any given magnificaton $\zeta_i$ are only performed on entries up to $Y(\zeta_i)$, with the number of stress grid points per MPI worker being redistributed each magnification step as necessary with adaptive load balancing. 
