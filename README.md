@@ -10,7 +10,7 @@ where the equivalent diffusivity provided by:
 
 $$f(\zeta) = \frac{\pi}{4}\left(\frac{E}{1-\nu^2}\right)^2 q_L^4 \zeta^3 C(\zeta)$$
 
-incorporates roughness and elastic properties of the surface. This diffusion-like process describes the redistribution of stresses from the applied load to areas of lower and higher stress due to areas of decreased and increased contact, respectively, along geometric irregularities at smaller scales ($\lamdba < L$) or increasing magnification ($\zeta > 1$). 
+incorporates roughness and elastic properties of the surface. This diffusion-like process describes the redistribution of stresses from the applied load to areas of lower and higher stress due to areas of decreased and increased contact, respectively, along geometric irregularities at smaller scales ($\lambda < L$) or increasing magnification ($\zeta > 1$). 
 
 For a fixed yield stress (i.e, $Y(\zeta) = Y(1)$ ), $P(\sigma, \zeta)$ is defined for the stress domain $\sigma \in [0,Y(1)]$ where the governing equation is solved subject to the boundary conditions $P(0,\zeta) = P(Y(1),\zeta) = 0$.
 
