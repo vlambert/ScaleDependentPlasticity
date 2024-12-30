@@ -12,7 +12,7 @@ $$f(\zeta) = \frac{\pi}{4}\left(\frac{E}{1-\nu^2}\right)^2 q_L^4 \zeta^3 C(\zeta
 
 For a fixed yield stress (i.e, $Y(\zeta) = Y(1)$ ), $P(\sigma, \zeta)$ is defined for the stress domain $\sigma \in [0,Y(1)]$ where the governing equation is solved subject to the boundary conditions $P(0,\zeta) = P(Y(1),\zeta) = 0$.
 
-For the case of a scale-dependent yield stress, the boundary condition $P(Y(\zeta),\zeta)$ is 1) is no longer fixed at a specific stress quantity but the domain evolves to $\sigma \in [0,Y(\zeta)]$. The yield stress boundary condition $P(Y(\zeta),\zeta)$ must be solved according to the conservation of total area and force across all magnifications, which provide two conditions:
+For the case of a scale-dependent yield stress, the boundary condition $P(Y(\zeta),\zeta)$ is no longer fixed at a specific stress quantity but the domain evolves to $\sigma \in [0,Y(\zeta)]$. The yield stress boundary condition $P(Y(\zeta),\zeta)$ must be solved according to the conservation of total area and force across all magnifications, which provide two conditions:
 
 $$\frac{A_\text{pl}(\zeta)}{A_{0}} = \frac{f(\zeta)}{Y'(\zeta)} P(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)} $$
 
