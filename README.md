@@ -1,7 +1,3 @@
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
-</head>
-
 # Elastoplastic contact with scale-dependent plastic strength
 This directory includes a numerical program to solve for the distribution of elastic, plastic and non-contact area along a randomly rough surface at varying scales including a scale-dependent plastic yield stress following the theoretical developments of Persson ([2001](https://doi.org/10.1016/S0039-6028(98)00051-X);[2006](https://doi.org/10.1016/j.surfrep.2006.04.001)).
 
@@ -107,7 +103,7 @@ $$ \rightarrow (a_{ny}- \frac{z_{ny}}{a_{ny-1}}b_{ny-1})P_{ny-1} + (b_{ny}-\frac
 
 The new coefficients for our final equation become:
 
-$$   \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
+$$ \tilde{a}_{ny} = a_{ny}- \frac{z_{ny}}{a_{ny-1}} b_{ny-1} $$
 
 $$    \tilde{b}_{ny} = b_{ny}-\frac{z_{ny}}{a_{ny-1}} c_{ny-1} $$
 
