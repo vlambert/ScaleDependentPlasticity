@@ -115,11 +115,11 @@ Thus the new coefficients for our final equation become:
 \end{align}
 
 
-\begin{align}
-\tilde{a}_{ny}^{i+1} &=- \frac{\Delta\zeta}{2}Sp^{i+1}\frac{1}{(\Delta\sigma+\delta^{i+1})} + \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) \\
+
+$$ \tilde{a}_{ny}^{i+1} &=- \frac{\Delta\zeta}{2}Sp^{i+1}\frac{1}{(\Delta\sigma+\delta^{i+1})} + \frac{Sp^{i+1}}{2F^{i+1}}(\Delta\sigma  + \delta^{i+1}) 
 \tilde{b}_{ny}^{i+1} &=  1+ \frac{\Delta\zeta}{2}\frac{Sp^{i+1}}{F^{i+1}}\bigg[ Sp^{i+1}+F^{i+1}\frac{1}{(\Delta\sigma + \delta^{i+1})}\bigg]\\
      \tilde{d}_{ny}^{i} &= \frac{Sp^{i+1}}{F^{i+1}} \bigg[ A_{pl}^{i} +   \frac{\Delta\zeta}{2}\bigg(Sp^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{1}{\Delta\sigma + \delta^{i}}P_{ny}^{i}-\frac{1}{\Delta\sigma} P_{ny-1}^{i} \bigg]\bigg)\nonumber\\
    &  + \frac{1}{2}(\Delta\sigma  + \delta^{i+1}) P_{ny-1}^{i}\bigg]
-\end{align}
+$$
 
 
