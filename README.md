@@ -10,7 +10,7 @@ Effective diffusivity:
 $$f(\zeta) = \frac{\pi}{4}\left(\frac{E}{1-\nu^2}\right)^2 q_L^4 \zeta^3 C(\zeta)$$
 
 Area of elastic contact:
-$$    A_\text{el}(\zeta)=  A_0 \int_0^{Y(\zeta)} P(\sigma,\zeta)d\sigma $$
+$$    A_{el}(\zeta)=  A_0 \int_0^{Y(\zeta)} P(\sigma,\zeta)d\sigma $$
 
 The normal force carried by elastically deformed contact area is:
 
