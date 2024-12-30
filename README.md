@@ -31,10 +31,13 @@ $$    a_{j}^{i+1}P_{j-1}^{i+1}+b_{j}^{i+1}P_{j}^{i+1} + c_{j}^{i+1}P_{j+1}^{i+1}
 
 Following an implicit Crank-Nicolson scheme, the coefficients take the form:
 
-$$    a_{j}^{i+1} &= -\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-$$    b_{j}^{i+1} &= 1+ 2\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-$$    c_{j}^{i+1} &=-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
-$$    d_{j}&=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
+$$    a_{j}^{i+1} = -\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    b_{j}^{i+1} = 1+ 2\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    c_{j}^{i+1} =-\frac{\Delta\zeta}{2}\frac{F^{i+1}}{\Delta\sigma^2} $$
+
+$$    d_{j}=\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg( P_{j-1}^{i} + P_{j+1}^{i}\bigg) + \bigg(1-2\frac{\Delta\zeta}{2}\frac{F^{i}}{\Delta\sigma^2}\bigg) P_{j}^{i} $$
 
 which can all be evaluated based on information from the current magnification station $i$ and knowledge of the diffusivity $f(\zeta)$ and yield stress evolution $Y'(\zeta)$, which are precribed in our calculations.
 The system of equations will form matrix vector product with a tridiagonal matrix and can be solved in parallel using a modified Thomas Algorithm. This implicit Crank-Nicolson scheme is numerically stable and 2nd-order accurate in space and time within the domain.
