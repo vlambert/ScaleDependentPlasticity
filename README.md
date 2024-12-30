@@ -51,7 +51,7 @@ Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F^{i}} $$
 
 ## Treatment of evolving yield stress boundary
-For a scale-dependent yield stress where the yield stress $Y(\zeta)$ is a function of magnification, we need to both adapt the model domain $\sigma \in [0,Y(\zeta)]$ as a function of magnification and solve for the appropriate boundary conditions $P(Y(\zeta),\zeta)$. Conservation of force across scales requires that $Y'(\zeta) \ge 0$ so we only consider problems where the stress domain increases with increasing magnficiation $\zeta$. 
+For a scale-dependent yield stress where the yield stress $Y(\zeta)$ is a function of magnification, we need to both adapt the model domain $\sigma \in [0,Y(\zeta)]$ as a function of magnification and solve for the appropriate boundary conditions $P(Y(\zeta),\zeta)$. Conservation of force across scales requires that $Y'(\zeta) \ge 0$ so we only consider problems where the stress domain increases with increasing magnficiation $\zeta$. In our numerical implementation we preallocate a model stress domain based on thte plastic yield strength at the largest magnification of interest $Y(\zeta_{max})$. Calculations for any given magnificaton $\zeta_i$ are only performed on entries up to $Y(\zeta_i)$, with the number of stress grid points per MPI worker being redistributed each magnification step as necessary with adaptive load balancing. 
 
 Let $F^{i}$ and $Sp^{i}$ denote the diffusivity $f(\zeta_i)$ and derivative of the yield stress $Y'(\zeta)$ at the magnification step $\zeta_{i}$. Given the solution to $P_{ny}$ at magnification step $i$, i.e. $P_{ny}^{i}$, one can solve for the corresponding plastic area of contact:
 
