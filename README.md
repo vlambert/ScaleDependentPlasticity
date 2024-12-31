@@ -22,6 +22,14 @@ $$\frac{A_\text{pl}(\zeta)}{A_{0}} = \frac{f(\zeta)}{Y'(\zeta)} P(\sigma,\zeta)\
 \frac{A'_\text{pl}(\zeta)}{A_{0}} = - Y'(\zeta) P(\sigma,\zeta) \bigg|_{\sigma = Y(\zeta)} - f(\zeta)\frac{\partial P}{\partial \sigma}(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)}
 ```
 
+The numerical implementation considers the case where the scale-dependence of the roughness power spectral density $C(\zeta)$ and plastic yield strength $Y(\zeta)$ are both characterized as power laws:
+
+$$ C(\zeta) = C_{0} \zeta^{m}, $$
+
+$$ Y(\zeta) = Y(1) \zeta^{n}, $$
+
+however more general expressions can easily be implemented.
+
 ## Numerical Solution
 We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicholson finite difference scheme. The numerical solution is implementdc using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallelilzed framework for efficiently solving the system of equations characterizerd by a tridiagonalize matrix.
 
