@@ -23,7 +23,7 @@ $$\frac{A_\text{pl}(\zeta)}{A_{0}} = \frac{f(\zeta)}{Y'(\zeta)} P(\sigma,\zeta)\
 ```
 
 ## Numerical Solution
-We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicholson finite difference scheme. The numerical solution is implement using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallilzed framework for efficiently solving the system of equations characterizerd by a tri-diagonalize matrix.
+We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicholson finite difference scheme. The numerical solution is implementdc using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallelilzed framework for efficiently solving the system of equations characterizerd by a tridiagonalize matrix.
 
 The interior solution of the diffusion problem is solved with a standard finite difference scheme, with the solutions to the governing equation given at stress increments $j$ and magnification step $i+1$ in the form:
 
