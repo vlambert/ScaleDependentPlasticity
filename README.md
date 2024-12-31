@@ -22,7 +22,7 @@ $$\frac{A_\text{pl}(\zeta)}{A_{0}} = \frac{f(\zeta)}{Y'(\zeta)} P(\sigma,\zeta)\
 \frac{A'_\text{pl}(\zeta)}{A_{0}} = - Y'(\zeta) P(\sigma,\zeta) \bigg|_{\sigma = Y(\zeta)} - f(\zeta)\frac{\partial P}{\partial \sigma}(\sigma,\zeta)\bigg|_{\sigma = Y(\zeta)}
 ```
 
-The numerical implementation considers the case where the scale-dependence of the roughness power spectral density $C(\zeta)$ and plastic yield strength $Y(\zeta)$ are both characterized as power laws:
+The numerical implementation considers the case where the scale-dependence of both the roughness power spectral density $C(\zeta)$ and plastic yield strength $Y(\zeta)$ are characterized by power laws:
 
 $$ C(\zeta) = C_{0} \zeta^{m}, $$
 
