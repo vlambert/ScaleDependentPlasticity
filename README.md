@@ -1,6 +1,33 @@
 # Elastoplastic contact with scale-dependent plastic strength
 This directory includes a numerical program to solve for the distribution of elastic, plastic and non-contact area along a randomly rough surface at varying scales including a scale-dependent plastic yield stress following the theoretical developments of Persson ([2001](https://doi.org/10.1016/S0039-6028(98)00051-X);[2006](https://doi.org/10.1016/j.surfrep.2006.04.001)).
 
+The software is compiled with `mpifort` using openmpi for multi-core parallel computing. Example makefiles and submission scripts are provided to submit calculations using distributed compute infrastructure with SLURM scheduling as well as for running on a local machine (setup performed on a 2024 Macbook Pro with M4 Max chip with open-mpi install through homebrew). Note for running on Apple Silicon, one may need to run 'export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)' prior to compiling. 
+
+The software produces three primary output files for calculations with the following formatting.
+
+1_contact : 
+Column #1: Zeta (magnification)
+Column #2: Ael (elastic contact area / total area)
+Column #3: Anon (area of non-contact / total area)
+Column #4: Apl (plastic contact area / total area)
+Column #5: Fel (elastic force)
+Column #6: Fpl (plastic force)
+Column #7: Ftot (total force)
+
+1_roughness:
+Column #1: Zeta (magnification)
+Column #2: fzeta (diffusivity at current magnification step)
+Column #3: sigYp (derivative of yield stress w.r.t. magnification at current magnification step)
+Column #4: sigYnow (yield stress at current magnification step)
+
+1_Pzeta:
+Entries are separated by comment lines indicating time step:
+**',' above is for zeta ', zeta_i
+
+with intervening columns:
+Column #1: Sigma_j (stress grid point)
+Column #2: P(sigma_j, zeta_i) (stress probability at sigma_j for zeta_i)
+
 ## Problem Statement
 The problem statement considers a rough surface with linear scale $$L$$ that can be examined at different magnifications $$\zeta = L/\lambda$$, where $$\lambda$$ is the shortest wavelength of roughness which is resolved at magnification $$\zeta$$. The distribution of stresses $\sigma$ under a uniformly appied macroscopic normal load $\sigma_0$ is described at varying magnifications by a stress probability density $P(\sigma, \zeta)$, which satisfies the diffusion-like governing equation:
 
