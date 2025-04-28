@@ -55,10 +55,10 @@ $$ C(\zeta) = C_{0} \zeta^{m}, $$
 
 $$ Y(\zeta) = Y(1) \zeta^{n}, $$
 
-however more general expressions can be implemented.
+however more general expressions can be readily implemented.
 
 ## Numerical Solution
-We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicholson finite difference scheme. The numerical solution is implemented using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallelilzed framework for efficiently solving the system of equations characterizerd by a tridiagonalize matrix.
+We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicolson finite difference scheme. The numerical solution is implemented using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallel framework for efficiently solving the system of equations characterized by a tridiagonalize matrix.
 
 The interior solution of the diffusion problem is solved with a standard finite difference scheme, with the solutions to the governing equation given at stress increments $j$ and magnification step $i+1$ in the form:
 
@@ -97,7 +97,7 @@ For a self-affine surface where the roughness power spectral density is a power-
 
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 
-Thus $f'(\zeta) \le 0$ if $m\le-2$ or for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
+Thus $f'(\zeta) \le 0$ if $m\le-2$ for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F_{i}} $$
 
