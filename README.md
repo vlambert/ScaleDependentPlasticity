@@ -29,7 +29,7 @@ Column #1: Sigma_j (stress grid point)<br>
 Column #2: P(sigma_j, zeta_i) (stress probability at sigma_j for zeta_i)<br>
 
 ## Problem Statement
-The problem statement considers a rough surface with linear scale $$L$$ that can be examined at different magnifications $$\zeta = L/\lambda$$, where $$\lambda$$ is the shortest wavelength of roughness which is resolved at magnification $$\zeta$$. The distribution of stresses $\sigma$ under a uniformly appied macroscopic normal load $\sigma_0$ is described at varying magnifications by a stress probability density $P(\sigma, \zeta)$, which satisfies the diffusion-like governing equation:
+The problem statement considers a randomly rough surface with linear scale $$L$$ that can be examined at different magnifications $$\zeta = L/\lambda$$, where $$\lambda$$ is the shortest wavelength of roughness that is resolved at magnification $$\zeta$$. The distribution of stresses $\sigma$ under a uniformly appied macroscopic normal load $\sigma_0$ is described at varying magnifications by a stress probability density $P(\sigma, \zeta)$, which satisfies the diffusion-like governing equation:
 
 $$ \frac{\partial P(\sigma,\zeta)}{\partial \zeta} = f(\zeta) \frac{\partial^2 P(\sigma,\zeta)}{\partial \sigma^2} $$ 
 
@@ -55,7 +55,7 @@ $$ C(\zeta) = C_{0} \zeta^{m}, $$
 
 $$ Y(\zeta) = Y(1) \zeta^{n}, $$
 
-however more general expressions can easily be implemented.
+however more general expressions can be implemented.
 
 ## Numerical Solution
 We solve the governing equation subject to the evolving yield stress boundary condition using an implicit Crank-Nicholson finite difference scheme. The numerical solution is implemented using a [modified Thomas Algorithm](https://doi.org/10.1016/j.cpc.2020.107722) which provides a parallelilzed framework for efficiently solving the system of equations characterizerd by a tridiagonalize matrix.
