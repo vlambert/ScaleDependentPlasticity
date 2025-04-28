@@ -269,7 +269,6 @@ PROGRAM RoughDiff
   Ftot = Felall + Fpl
   IF(myrank.EQ.0)THEN
      WRITE(100,402) zetan, Ael, Anon, Apl, Felall, Fpl, Ftot   ! Output area of contact at every zeta step 
-     WRITE(103,401) zetan, fzetan, sigYp, sigY0         ! diffusivity and yield stress at zeta_n
      CALL PRINTPSD(101,Pszprall/dimfac,zetan2,nsigmax,dsig*dimfac,outstepsize)
   ENDIF
   zetaoprev = zetan
@@ -404,7 +403,7 @@ PROGRAM RoughDiff
            Ftot = Felall + Fpl
 
            WRITE(100,402) zetan2, Ael, Anon, Apl, Felall, Fpl,Ftot                              ! Output relative area of contact
-           WRITE(103,401) zetan2, fzetan2*dimfac, sigYp2*dimfac, sigYnow*dimfac, ddsigy,Pszprall(syindexhome),syindex,syrank                    ! Output diffusivity and yield stress
+           WRITE(103,401) zetan2, fzetan2*dimfac, sigYp2*dimfac, sigYnow*dimfac                 ! Output diffusivity and yield stress
 !           IF((zetan2-zprev).GE.zoutmod)THEN
 !              CALL PRINTPSD(101,Pszprall/dimfac,zetan2,nsigmax,dsig*dimfac,outstepsize)
 !              zprev = zetan2
@@ -466,7 +465,7 @@ PROGRAM RoughDiff
      CLOSE(110)
   ENDIF
 400 format (3(1X,E15.7E3))  ! 1_contact
-401 format (6(1X,E15.7E3),1X,I6,1X,I3)  ! analytic
+401 format (4(1X,E15.7E3))  ! analytic
 402 format (1(1X,E15.7E3),6(1X,E15.7E3))
 403 format (12(1X,E35.28),1X,I20) ! output details
 404 format (1X,E35.28) 
