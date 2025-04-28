@@ -97,7 +97,7 @@ For a self-affine surface where the roughness power spectral density is a power-
 
 $$  \frac{f'(\zeta)}{f(\zeta)} = (2+m)\zeta^{-1} $$
 
-Thus $f'(\zeta) \le 0$ if $m\le-2$ for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification step $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
+Thus $f'(\zeta) \le 0$ if $m\le-2$ for surfaces with Hurst exponents $H\ge 0.5$, as is common for many natural and engineered surfaces. This outcome is convenient for an adaptive magnification integration scheme for roughness distributions with Hurst exponents greater than 0.5 seeing that the effective diffusivity decreases with increasing magnification, allowing for larger time steps with increasing magnification. At a given magnification step $\zeta_i$, we compute a reasonable magnification increment $\Delta\zeta_{i}$ to the next magnification step $\zeta_{i+1}$ using the diffusivity evaluated at step $\zeta_i$, $F_{i} = f(\zeta_{i})$:
 
 $$    \Delta\zeta_{i} = \alpha \frac{\Delta \sigma^2}{F_{i}} $$
 
@@ -120,7 +120,7 @@ We compute the increment $\Delta A_{pl} = \Delta\zeta \partial A_{pl}/\partial \
 
 $$    \Delta A_{pl} = \frac{\Delta\zeta}{2}\bigg(  -Sp^{i+1}P_{ny}^{i+1} - \frac{F^{i+1}}{\Delta \sigma}\bigg[ P_{ny}^{i+1}-P_{ny-1}^{i+1}\bigg] -Sp^{i}P_{ny}^{i} - \frac{F^{i}}{\Delta \sigma}\bigg[ P_{ny}^{i}-P_{ny-1}^{i}\bigg]\bigg). $$
 
-The above considers the uniform grid spacing $\Delta\sigma = \sigma_{j}-\sigma_{j-1}$. As the yield boundary evolves, the spacing between the yield boundary $\sigma_{ny}$ and its neighboring grid point $\sigma_{ny-1}$ may differ from the uniform grid by a small amount $\delta$ as $\Delta\sigma_{ny} = \Delta\sigma + \delta$ depending on the magnification step.
+The above considers uniform grid spacing $\Delta\sigma = \sigma_{j}-\sigma_{j-1}$. As the yield boundary evolves, the spacing between the yield boundary $\sigma_{ny}$ and its neighboring grid point $\sigma_{ny-1}$ may differ from the uniform grid by a small amount $\delta$ as $\Delta\sigma_{ny} = \Delta\sigma + \delta$ depending on the magnification step.
 
 We adapt the 2nd-order finite difference method for the nodes near the yield boundary with uneven spacing by interpolating the distribution $P(\sigma,\zeta)$ with a 2nd-order Lagrange polynomial between points $P_{ny-2}$ and $P_{ny}$. The equation for our discretized diffusion equation at the second-to-last node can then be determined as:
 
@@ -145,7 +145,7 @@ Now we consider the condition for the node at the yield boundary:
    - Sp^{i}P_{ny}^{i} - F^{i}\bigg[ \frac{3\Delta\sigma + 2 \delta^{i}}{(\Delta\sigma + \delta^{i})(2\Delta\sigma+\delta^{i})}P_{ny}^{i}-\frac{2\Delta\sigma + \delta^{i}}{\Delta\sigma(\Delta\sigma+\delta^{i})}P_{ny-1}^{i} + \frac{\Delta\sigma + \delta^{i}}{\Delta\sigma(2\Delta\sigma + \delta^{i})}P_{ny-2}^{i}\bigg]\bigg) 
 ```
 
-Note that this 2nd-order formulation of the boundary equation compromises the tridiagonal nature of the finite difference operator. We can define a new tridiagonal matrix to solve by scaling and adding the second-to-last equation to the yield boundary equation:
+Note that this 2nd-order formulation of the boundary equation compromises the tridiagonal structure of the finite difference operator. We define a new tridiagonal matrix by scaling and adding the second-to-last equation to the yield boundary equation:
 
 $$ a_{ny-1}P_{ny-2}+ b_{ny-1}P_{ny-1}+ c_{ny-1}P_{ny} = d_{ny-1} $$
 $$    z_{ny}P_{ny-2}+ a_{ny}P_{ny-1}+ b_{ny}P_{ny} = d_{ny} $$
