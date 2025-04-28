@@ -14,19 +14,19 @@ Column #5: Fel (elastic force)<br>
 Column #6: Fpl (plastic force)<br>
 Column #7: Ftot (total force)<br>
 
-1_roughness:
-Column #1: Zeta (magnification)
-Column #2: fzeta (diffusivity at current magnification step)
-Column #3: sigYp (derivative of yield stress w.r.t. magnification at current magnification step)
-Column #4: sigYnow (yield stress at current magnification step)
+1_roughness: <br>
+Column #1: Zeta (magnification) <br>
+Column #2: fzeta (diffusivity at current magnification step) <br>
+Column #3: sigYp (derivative of yield stress w.r.t. magnification at current magnification step) <br>
+Column #4: sigYnow (yield stress at current magnification step)<br>
 
-1_Pzeta:
-Entries are separated by comment lines indicating time step:
-**',' above is for zeta ', zeta_i
+1_Pzeta:<br>
+Entries are separated by comment lines indicating time step:<br>
+**',' above is for zeta ', zeta_i<br>
 
-with intervening columns:
-Column #1: Sigma_j (stress grid point)
-Column #2: P(sigma_j, zeta_i) (stress probability at sigma_j for zeta_i)
+with intervening columns:<br>
+Column #1: Sigma_j (stress grid point)<br>
+Column #2: P(sigma_j, zeta_i) (stress probability at sigma_j for zeta_i)<br>
 
 ## Problem Statement
 The problem statement considers a rough surface with linear scale $$L$$ that can be examined at different magnifications $$\zeta = L/\lambda$$, where $$\lambda$$ is the shortest wavelength of roughness which is resolved at magnification $$\zeta$$. The distribution of stresses $\sigma$ under a uniformly appied macroscopic normal load $\sigma_0$ is described at varying magnifications by a stress probability density $P(\sigma, \zeta)$, which satisfies the diffusion-like governing equation:
