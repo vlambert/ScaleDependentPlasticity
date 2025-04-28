@@ -1,18 +1,18 @@
 # Elastoplastic contact with scale-dependent plastic strength
 This directory includes a numerical program to solve for the distribution of elastic, plastic and non-contact area along a randomly rough surface at varying scales including a scale-dependent plastic yield stress following the theoretical developments of Persson ([2001](https://doi.org/10.1016/S0039-6028(98)00051-X);[2006](https://doi.org/10.1016/j.surfrep.2006.04.001)).
 
-The software is compiled with `mpifort` using openmpi for multi-core parallel computing. Example makefiles and submission scripts are provided to submit calculations using distributed compute infrastructure with SLURM scheduling as well as for running on a local machine (setup performed on a 2024 Macbook Pro with M4 Max chip with open-mpi install through homebrew). Note for running on Apple Silicon, one may need to run 'export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)' prior to compiling. 
+The software is compiled with `mpifort` using openmpi for multi-core parallel computing. Example makefiles and submission scripts are provided to submit calculations using distributed compute infrastructure with SLURM scheduling as well as for running on a local machine (setup performed on a 2024 Macbook Pro with M4 Max chip with open-mpi install through homebrew). Note for running on Apple Silicon, one may need to run 'export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)' prior to compiling. <br>
 
-The software produces three primary output files for calculations with the following formatting.
+The software produces three primary output files for calculations with the following formatting.<br>
 
-1_contact : 
-Column #1: Zeta (magnification)
-Column #2: Ael (elastic contact area / total area)
-Column #3: Anon (area of non-contact / total area)
-Column #4: Apl (plastic contact area / total area)
-Column #5: Fel (elastic force)
-Column #6: Fpl (plastic force)
-Column #7: Ftot (total force)
+1_contact : <br>
+Column #1: Zeta (magnification) <br>
+Column #2: Ael (elastic contact area / total area) <br>
+Column #3: Anon (area of non-contact / total area)<br>
+Column #4: Apl (plastic contact area / total area)<br>
+Column #5: Fel (elastic force)<br>
+Column #6: Fpl (plastic force)<br>
+Column #7: Ftot (total force)<br>
 
 1_roughness:
 Column #1: Zeta (magnification)
